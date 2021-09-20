@@ -7,7 +7,7 @@
   
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.whiley</groupId>
-  <artifactId>JBlob</artifactId>
+  <artifactId>jblob</artifactId>
   <version>1.0.0</version>
 
 

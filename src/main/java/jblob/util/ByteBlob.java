@@ -462,7 +462,7 @@ public class ByteBlob implements Blob {
 					r += "," + replacements[i].toString();
 				}
 			}
-			return "{" + r + "}";
+			return "{" + r + "}" + parent;
 		}
 	}
 

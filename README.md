@@ -7,7 +7,9 @@
    1. [Mutation](#mutation)
    1. [Insertion](#insertion)
    1. [Replacement](#replacement)
+1. [Proxies](#proxies)
 1. [Layouts](#layouts)
+1. [JavaDoc API]()
 
 ## Overview
 
@@ -123,5 +125,65 @@ assert b6.readByte(2) == 0x02;
 
 Here, the size of `b6` has reduced to `3` because we've replaced two
 bytes in `b4` with just one byte.
+
+## Proxies
+
+Whilst reading / writing low-level data types is useful, ultimately we
+want the ability to read / write objects.  Here, we look at the
+simplest way of getting started with this, and in following sections
+we consider more advanced approaches.
+
+### Immutable Point
+
+A _proxy_ object is a essentially a wrapper around a `Blob` which
+provides a more useful (e.g. human readable) interface.  A simple
+example is the following `Point` class:
+
+```Java
+public class Point {
+	private final Blob blob;
+	private final int offset;
+
+	public Point(Blob blob, int offset) {
+		if((blob.size() - offset) < 8) {
+			throw new IllegalArgumentException("insufficient space in blob");
+		}	
+		this.blob = blob;
+		this.offset = offset;
+	}
+
+	public int getX() {
+		return blob.readInt(offset);
+	}
+
+	public int getY() {
+		return blob.readInt(offset + 4);
+	}
+}
+```
+
+We can create a `Point` from an existing `Blob` (which must be big
+enough), and use this proxy object to access data within the blob
+(i.e. the `X` and `Y` coordinates).  Observe that the layout of our
+`Point` is hard coded into our proxy (e.g. where an `int` is `4`
+bytes, etc).
+
+The following illustrates a simple test:
+
+```Java
+Blob blob = Blob(new byte[8]);
+blob = blob.writeInt(0, 1);
+blob = blob.writeInt(4, 2);
+Point p = new Point(blob,0);
+assert p.getX() == 1;
+assert p.getY() == 2;
+```
+
+This simply initialises a `Blob` of sufficient size, and creates a new
+proxy `Point` as address `0`.  This proxy then provides convenient
+methods for reading data out of the blob.
+
+### Mutable Point
+
 
 ## Layouts

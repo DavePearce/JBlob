@@ -4,9 +4,9 @@
 
 1. [Overview](#overview)
 1. [Blobs](#blobs)
-  1. [Mutation](#mutation)
-  1. [Insertion](#insertion)
-  1. [Replacement](#replacement)
+   1. [Mutation](#mutation)
+   1. [Insertion](#insertion)
+   1. [Replacement](#replacement)
 1. [Layouts](#layouts)
 
 
@@ -14,8 +14,13 @@
 
 ## Overview
 
-A small library for manipulating immutable binary blobs.  For example,
-suppose we have the following bytes:
+A small library for manipulating immutable binary blobs.
+<a name="blobs"/>
+
+## Blobs
+
+A `Blob` is a generic representation for a chunk of binary data.
+Suppose we have the following bytes:
 
 ```Java
 byte[] bytes = {0x01,0x02};
@@ -38,10 +43,6 @@ assert b1.readShort(0) == 0x102;
 ```
 
 This extends to other primitive layouts, such as `int`, `long`, etc.
-
-<a name="blobs"/>
-
-## Blobs
 
 ### Mutation
 

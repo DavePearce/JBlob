@@ -9,13 +9,9 @@
    1. [Replacement](#replacement)
 1. [Layouts](#layouts)
 
-
-<a name="overview"/>
-
 ## Overview
 
 A small library for manipulating immutable binary blobs.
-<a name="blobs"/>
 
 ## Blobs
 
@@ -93,7 +89,7 @@ Blob b3 = b2.writeByte(0,(byte) 0x03);
 In this case, `b3` has the representation `{(0;1;[3])}[1, 2]` rather
 than `{(0;1;[3])}{(0;1;[2])}[1, 2]` as might be expected.
 
-#### Insertion
+### Insertion
 
 A `Blob` can be resized in various ways.  For example, we can _insert_
 bytes into a `Blob` as follows:
@@ -112,7 +108,7 @@ assert b5.readByte(2) == 0x3;
 Here, the contents of `b4` looks like `[3,4,1,2]`, whilst `b5` looks
 like `[1,2,3]`.  
 
-#### Replacement
+### Replacement
 
 Another supported operation is replacing one sequence with another, as
 the following illustrates:
@@ -127,3 +123,5 @@ assert b6.readByte(2) == 0x02;
 
 Here, the size of `b6` has reduced to `3` because we've replaced two
 bytes in `b4` with just one byte.
+
+## Layouts

@@ -135,10 +135,10 @@ Talk about merging.
 
 ## Proxies
 
-Whilst reading / writing low-level data types is useful, ultimately we
-want the ability to read / write objects.  Here, we look at the
-simplest way of getting started with this, and in following sections
-we consider more advanced approaches.
+Whilst reading / writing low-level data types is useful, ultimately
+the ability to read / write _objects_ is important.  Here, we look at
+the simplest way of getting started with this, and in the following
+sections consider more advanced approaches.
 
 ### Immutable
 

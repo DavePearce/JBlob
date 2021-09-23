@@ -1,5 +1,12 @@
 # JBlob
 
+##### Table of Contents
+
+[Overview](#overview)
+
+<a name="overview"/>
+## Overview
+
 A small library for manipulating immutable binary blobs.  For example,
 suppose we have the following bytes:
 

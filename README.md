@@ -7,6 +7,7 @@
    1. [Mutation](#mutation)
    1. [Insertion](#insertion)
    1. [Replacement](#replacement)
+   1. [Transactions](#transactions)
 1. [Proxies](#proxies)
    1. [Immutable](#immutable)
    1. [Mutable](#Mutable)
@@ -128,6 +129,10 @@ assert b6.readByte(2) == 0x02;
 Here, the size of `b6` has reduced to `3` because we've replaced two
 bytes in `b4` with just one byte.
 
+### Transactions
+
+Talk about merging.
+
 ## Proxies
 
 Whilst reading / writing low-level data types is useful, ultimately we
@@ -182,10 +187,36 @@ assert p.getY() == 2;
 ```
 
 This simply initialises a `Blob` of sufficient size, and creates a new
-proxy `Point` as address `0`.  This proxy then provides convenient
+proxy `Point` at address `0`.  This proxy then provides convenient
 methods for reading data out of the blob.
 
 ### Mutable
 
+Whilst our `Point` class above was helpful, it was still fairly
+limited.  The next step is to update our `Point` class so we can
+_write_ to it as well.  The following illustrates the changes
+necessary:
+
+```Java
+class Point {
+
+    ...
+	
+	public Point setX(int x) {
+		Blob nblob = blob.writeInt(offset, x);
+		return new Point(nblob,offset);
+	}
+
+	public Point setY(int y) {
+		Blob nblob = blob.writeInt(offset + 4, y);
+		return new Point(nblob,offset);
+	}
+}
+```
+
+Here, we have defined a functional API for `Point` which reflects the
+mechanics of the underlying `Blob`.  However, it is possible to create
+an imperative API (e.g. which updates the `blob` field) --- however,
+care must be taken when dealing with nested proxies.
 
 ## Layouts

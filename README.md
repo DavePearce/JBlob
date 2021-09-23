@@ -8,6 +8,8 @@
    1. [Insertion](#insertion)
    1. [Replacement](#replacement)
 1. [Proxies](#proxies)
+   1. [Immutable](#immutable)
+   1. [Mutable](#Mutable)
 1. [Layouts](#layouts)
 1. [JavaDoc API]()
 
@@ -133,7 +135,7 @@ want the ability to read / write objects.  Here, we look at the
 simplest way of getting started with this, and in following sections
 we consider more advanced approaches.
 
-### Immutable Point
+### Immutable
 
 A _proxy_ object is a essentially a wrapper around a `Blob` which
 provides a more useful (e.g. human readable) interface.  A simple
@@ -183,7 +185,7 @@ This simply initialises a `Blob` of sufficient size, and creates a new
 proxy `Point` as address `0`.  This proxy then provides convenient
 methods for reading data out of the blob.
 
-### Mutable Point
+### Mutable
 
 
 ## Layouts
